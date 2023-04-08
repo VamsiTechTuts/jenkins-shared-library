@@ -8,8 +8,8 @@ options {
     timestamps()
     }
 parameters {
-    string(name: 'url', defaultValue: '', description: 'Git URL')
-    string(name: 'branch', defaultValue: '', description: 'Git Branch')
+    string(name: 'url', defaultValue: 'https://github.com/vamsi8977/jenkinsfile.git', description: 'Git URL')
+    string(name: 'branch', defaultValue: 'master', description: 'Git Branch')
 }
 environment {
       inventoryName    = 'Bommasani'
@@ -41,9 +41,6 @@ stage('SHELL') {
             ruby -v
             aws --version
             az --version
-            kubectl version --output=yaml
-            docker version
-            dotnet --version
             node -v
           """
         }
@@ -90,18 +87,6 @@ stage('NPM') {
           cd ${WORKSPACE}/vamsi/npm;
           npm install
           npm test
-          """
-        }
-      }
-    }
-stage('DotNet') {
-      steps {
-        ansiColor('xterm') {
-          echo 'DotNet Build....'
-           sh """
-          cd ${WORKSPACE}/vamsi/dotnet;
-          dotnet restore
-          dotnet build
           """
         }
       }
