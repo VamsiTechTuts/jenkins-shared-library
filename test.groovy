@@ -41,9 +41,6 @@ stage('SHELL') {
             ruby -v
             aws --version
             az --version
-            kubectl version --output=yaml
-            docker version
-            dotnet --version
             node -v
           """
         }
@@ -90,18 +87,6 @@ stage('NPM') {
           cd ${WORKSPACE}/vamsi/npm;
           npm install
           npm test
-          """
-        }
-      }
-    }
-stage('DotNet') {
-      steps {
-        ansiColor('xterm') {
-          echo 'DotNet Build....'
-           sh """
-          cd ${WORKSPACE}/vamsi/dotnet;
-          dotnet restore
-          dotnet build
           """
         }
       }
